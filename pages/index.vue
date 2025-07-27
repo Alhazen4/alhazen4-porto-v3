@@ -1,19 +1,27 @@
 <template>
   <div class="bg-[#24292e] h-full flex flex-col justify-center items-center gap-3 text-white">
-    <div class="flex flex-col gap-3 justify-center items-center">
+    <div class="flex flex-col gap-3 justify-center items-center max-[650px]:w-[80%]">
       <p>Hello, I am 👋</p>
       <h1 class="font-bold text-4xl">Ardi Azizi</h1>
       <Badge>Front End and Mobile Developer</Badge>
       <p class="text-center">I use "Alhazen4" as my developer nickname.
         <Dialog>
           <DialogTrigger as-child>
-            <span class="text-white">Here is why? 🔍</span>
+            <span class="text-white bg-[#171717] p-1 rounded-sm hover:cursor-pointer">Here is why? 🔍</span>
           </DialogTrigger>
 
-          <DialogContent class="max-h-[95vh] w-[70%] bg-[#24292e] text-white">
+          <DialogContent class="max-h-[95vh] w-[70%] bg-[#24292e] text-white max-[650px]:overflow-scroll">
             <DialogHeader class="pt-2">
-              <DialogTitle>Alhazen a.k.a Ibn Haytham</DialogTitle>
-              <p class="text-sm mb-2">Inspiration behind a Scientist</p>
+              <div class="flex flex-row justify-start items-center gap-3 max-[650px]:mb-2">
+                <Avatar>
+                  <AvatarImage src="https://ft.umj.ac.id/ftumj/gambar/hasan_1_23-05-22.jpg" alt="@unovue" />
+                  <AvatarFallback class="bg-black">CN</AvatarFallback>
+                </Avatar>
+                <div>
+                  <DialogTitle class="max-[650px]:text-left max-[650px]:text-base mb-2">Alhazen a.k.a Ibn Haytham</DialogTitle>
+                  <p class="text-sm max-[650px]:text-left max-[650px]:text-xs">Inspiration behind a Scientist</p>
+                </div>
+              </div>
               <p class="text-sm text-gray-400">I do inspired by Ibn al-Haytham, known as Alhazen in the western, as scientist who mastered many of knowledge including
                 science, medical, astronomy, philosophy and religion. 🤯 <br><br>
 
@@ -33,8 +41,8 @@
                 </span>
               </p>
             </DialogHeader>
-            <p class="font-semibold">My other inspirational figures</p>
-            <div class="flex items-start justify-start gap-3">
+            <p class="font-semibold max-[650px]:text-center">My other inspirational figures</p>
+            <div class="flex items-start justify-start gap-3 max-[650px]:justify-center">
               <template v-for="datum in data">
                 <TooltipProvider>
                   <Tooltip>
@@ -47,6 +55,7 @@
                     <TooltipContent class="flex flex-col items-center">
                       <p class="font-semibold">{{ datum.name }}</p>
                       <p class="text-xs text-gray-400">{{ datum.desc }}</p>
+                      <a class="text-[10px] text-gray-400" :href="datum.img" target="_blank"><u>Image Source</u></a>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -55,27 +64,37 @@
           </DialogContent>
         </Dialog>
       </p>
-      <div class="flex items-center justify-center gap-2">
-        <div class="relative">
-          <div class="absolute w-3 h-3 bg-green-300 rounded-full"></div>
-          <div class="w-3 h-3 bg-green-400 rounded-full animate-ping"></div>
+      <div class="flex items-center justify-center gap-2 max-[650px]:flex-col">
+        <div class="flex flex-row justify-center items-center gap-2">
+          <div class="relative">
+            <div class="absolute w-3 h-3 bg-green-300 rounded-full"></div>
+            <div class="w-3 h-3 bg-green-400 rounded-full animate-ping"></div>
+          </div>
+          <p>Currently learning:</p>
         </div>
-        <p>Currently learning:</p>
-        <Badge>Java</Badge>
+        <Badge>Kotlin</Badge>
         <Badge>Android Development</Badge>
+        <Badge>English Language B2 to C1</Badge>
+        <Badge>Mandarin HSK 1</Badge>
       </div>
     </div>
-    <div class="flex gap-5 mt-5">
-      <Button variant="outline" class="bg-[#24292e] transform transition-color">Download my resume</Button>
+    <div class="flex gap-5 mt-5 max-[650px]:flex-col ">
+      <a href="https://docs.google.com/document/d/1vnlKyCsNNlJZD0FFZWo8acuvabTCc7_p/edit?usp=sharing&ouid=109460233331740037149&rtpof=true&sd=true" target="_blank">
+        <Button variant="outline" class="bg-[#24292e] transform transition-color max-[650px]:w-full">Download my resume</Button>
+      </a>
       <NuxtLink to="projects">
-        <Button variant="outline" class="bg-[#24292e] transform transition-color">See my projects</Button>
+        <Button variant="outline" class="bg-[#24292e] transform transition-color max-[650px]:w-full">See my projects</Button>
       </NuxtLink>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-    import { Button } from '~/components/ui/button';
+  useHead({
+    title: 'Alhazen4 Portfolio',
+  })
+
+  import { Button } from '~/components/ui/button';
     import { Badge } from '~/components/ui/badge';
     import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "~/components/ui/dialog";
     import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -86,7 +105,7 @@
       TooltipTrigger
     } from '@/components/ui/tooltip';
 
-    const data = [
+  const data = [
       {
         "name": "B. J. Habibie",
         "desc": "Indonesian Scientist",

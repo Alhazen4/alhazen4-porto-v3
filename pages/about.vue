@@ -1,10 +1,10 @@
 <template>
-  <div class="bg-[#24292e] p-16 pt-20 h-max">
+  <div class="bg-[#24292e] p-16 pt-20 h-max max-[650px]:p-8 max-[650px]:pt-20">
     <div class="w-full flex flex-col mb-10">
       <h1 class="text-white text-[50px] font-semibold">About</h1>
       <p class="text-white mb-3">Alhazen's profile</p>
       <p class="font-semibold text-white mb-3">Get my CV or connect with me now!</p>
-      <div class="flex flex-row gap-3">
+      <div class="flex flex-row gap-3 max-[650px]:flex-col">
         <a href="http://github.com/alhazen4" target="_blank" class="w-max">
           <Button variant="outline" class="bg-[#24292e] transform transition-color text-white">
             <Download />Download Resume
@@ -32,7 +32,7 @@
         </a>
       </div>
     </div>
-    <div class="grid grid-cols-2 gap-3 text-white">
+    <div class="grid grid-cols-2 gap-3 text-white max-[650px]:grid-cols-1">
       <div class="flex flex-col gap-3 w-full">
         <div class="flex flex-row gap-5 p-10 border-[#2b3137] shadow-md border-3 rounded-md">
           <img
@@ -107,7 +107,6 @@
                       <div class="ml-3 mb-8">
                         <p class="font-bold">{{ step.company }}</p>
                         <p class="text-sm font-semibold mb-1">{{ step.title }} <br> {{ step.duration }}</p>
-<!--                        <p class="text-sm text-gray-400">{{ step.description }}</p>-->
                         <p class="text-sm font-semibold text-gray-400 mt-3">Key Achievements:</p>
                         <ul class="text-xs text-gray-400 list-disc ml-4">
                           <template v-for="key in step.keys">
@@ -127,6 +126,9 @@
 </template>
 
 <script setup lang="ts">
+  useHead({
+    title: 'About | Alhazen4 Portfolio',
+  })
     import { Download } from 'lucide-vue-next'
     import { Instagram, Linkedin, Github, Mail } from 'lucide-vue-next';
     import { Badge } from '~/components/ui/badge';

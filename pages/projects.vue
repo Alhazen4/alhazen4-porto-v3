@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#24292e] flex flex-col gap-5 justify-center items-center p-16 pt-20">
+  <div class="bg-[#24292e] flex flex-col gap-5 justify-center items-center p-16 pt-20 max-[650px]:p-8 max-[650px]:pt-20">
     <div class="w-full flex flex-col mb-10">
       <h1 class="text-white text-[50px] font-semibold">Projects</h1>
       <p class="text-white mb-3">Alhazen4's projects showcase.</p>
@@ -10,7 +10,7 @@
         </Button>
       </a>
     </div>
-    <div class="grid grid-cols-3 gap-8">
+    <div class="grid grid-cols-3 gap-8 max-[650px]:grid-cols-1">
       <template v-for="datum in data">
         <Card class="hover:shadow-lg hover:scale-101 transform transition-all">
          <img :src="`/assets/${datum.imagesFolderName}/1.webp`" alt="" class="  h-44 object-fit">
@@ -37,18 +37,19 @@
                  </Button>
                </DialogTrigger>
 
-               <DialogContent class="max-h-[95vh] w-[70%] bg-[#24292e] text-white">
+               <DialogContent class="max-h-[95vh] w-[70%] bg-[#24292e] text-white
+                max-[650px]:h-max max-[650px]:w-full">
                  <DialogHeader class="pt-2">
                    <DialogTitle class="text-3xl">{{ selectedData.title }}</DialogTitle>
                    <p class="text-sm">{{ selectedData.purpose }} - {{ selectedData.duration }}</p>
                  </DialogHeader>
                  <p class="text-md text-gray-400">{{ selectedData.desc }}</p>
-                 <div class="flex flex-row items-center gap-3">
+                 <div class="flex flex-row items-center gap-3 max-[650px]:flex-col max-[650px]:items-start">
                    <p class="font-semibold">Stacks:</p>
-                   <div class="flex flex-row gap-3">
+                   <div>
                      <template v-if="datum.stacks.length >= 0">
                        <template v-for="(item, index) in datum.stacks">
-                         <Badge>{{ item }}</Badge>
+                         <Badge class="m-0.5">{{ item }}</Badge>
                        </template>
                      </template>
                    </div>
@@ -56,8 +57,8 @@
                  <div>
                    <p class="text-xs text-gray-400">{{ datum.info }}</p>
                  </div>
-                 <div class="flex items-center justify-center">
-                    <Carousel class="w-[50%]" :opts="{ align: 'start', loop: true }">
+                 <div class="flex justify-center items-center ">
+                    <Carousel class="w-[50%] max-[650px]:w-[70%]" :opts="{ align: 'start', loop: true }">
                      <CarouselContent class="">
                        <template v-for="(image, i) in datum.imagesTotal">
                          <CarouselItem>
@@ -83,6 +84,10 @@
 </template>
 
 <script setup>
+  useHead({
+    title: 'Projects | Alhazen4 Portfolio',
+  })
+
   import { ref } from 'vue';
   import { Cpu } from 'lucide-vue-next';
   import { Card, CardContent } from '~/components/ui/card/index.js'
