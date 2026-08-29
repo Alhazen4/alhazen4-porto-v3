@@ -1,0 +1,12 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: alhazen4-porto-v3
+
+    ports:
+      - "8080:80"
+
+    restart: unless-stopped
