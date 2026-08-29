@@ -7,11 +7,11 @@ services:
     container_name: alhazen4-porto-v3
 
     ports:
-      - "3000:3000"
+      - "8000:8000"
 
     environment:
       NODE_ENV: production
       NITRO_HOST: 0.0.0.0
-      NITRO_PORT: 3000
+      NITRO_PORT: 8000
 
     restart: unless-stopped
