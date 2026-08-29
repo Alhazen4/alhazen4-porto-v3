@@ -1,11 +1,13 @@
-FROM nginx:alpine
+FROM node:22-alpine
 
-RUN rm -rf /usr/share/nginx/html/*
+WORKDIR /app
 
-COPY dist/ /usr/share/nginx/html/
+COPY .output ./.output
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+ENV NODE_ENV=production
+ENV NITRO_HOST=0.0.0.0
+ENV NITRO_PORT=3000
 
-EXPOSE 80
+EXPOSE 3000
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["node", ".output/server/index.mjs"]
