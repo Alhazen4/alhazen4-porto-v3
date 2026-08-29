@@ -6,8 +6,8 @@ COPY .output ./.output
 
 ENV NODE_ENV=production
 ENV NITRO_HOST=0.0.0.0
-ENV NITRO_PORT=3000
+ENV NITRO_PORT=8000
 
-EXPOSE 3000
+EXPOSE 8000
 
 CMD ["node", ".output/server/index.mjs"]
